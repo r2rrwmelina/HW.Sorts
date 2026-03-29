@@ -39,6 +39,9 @@ public class Ticket implements Comparable<Ticket> {
         return timeTo;
     }
 
+    public int getFightTime() {
+        return timeTo - timeFrom;
+    }
 
     // Вспомогательные методы для корректной работы equals
     @Override
