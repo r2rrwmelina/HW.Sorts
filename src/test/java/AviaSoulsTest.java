@@ -8,7 +8,7 @@ public class AviaSoulsTest {
 
     Ticket ticket1 = new Ticket("Домодедово", "Пулково", 10_200, 10, 12);
     Ticket ticket2 = new Ticket("Сочи", "Звартноц", 4800, 8, 11);
-    Ticket ticket3 = new Ticket("Внуково", "Аднан Мендерес", 20_000, 14, 19);
+    Ticket ticket3 = new Ticket("Сочи", "Звартноц", 20_000, 14, 19);
     Ticket ticket4 = new Ticket("Кеннеди", "Гатвик", 18_000, 18, 30);
     Ticket ticket5 = new Ticket("Кеннеди", "Абу-Даби", 33_000, 14, 26);
     Ticket ticket6 = new Ticket("Домодедово", "Пулково", 9_200, 1, 4);
@@ -66,6 +66,36 @@ public class AviaSoulsTest {
 
         Ticket[] expected = {ticket7, ticket1, ticket8, ticket6};
         Ticket[] actual = aviaSouls.searchAndSortBy("Домодедово", "Пулково", timeComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindOneTicket() {
+        TicketTimeComparator timeComparator = new TicketTimeComparator();
+
+        Ticket[] expected = {ticket5};
+        Ticket[] actual = aviaSouls.searchAndSortBy("Кеннеди", "Абу-Даби", timeComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindThreeTickets() {
+        TicketTimeComparator timeComparator = new TicketTimeComparator();
+
+        Ticket[] expected = {ticket2, ticket3};
+        Ticket[] actual = aviaSouls.searchAndSortBy("Сочи", "Звартноц", timeComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotFindTickets() {
+        TicketTimeComparator timeComparator = new TicketTimeComparator();
+
+        Ticket[] expected = {};
+        Ticket[] actual = aviaSouls.searchAndSortBy("Ханэда", "Бангкок", timeComparator);
 
         Assertions.assertArrayEquals(expected, actual);
     }
